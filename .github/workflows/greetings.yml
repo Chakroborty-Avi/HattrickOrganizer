@@ -12,3 +12,8 @@ jobs:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
         issue-message: "Hey, thanks for opening your first issue! 🙂 \n Be sure to check out the wiki and the HT forum for support."
         pr-message: 'Congratulations on your first pull request. Thank you for making HO better !!'
+    - name: Upload strace artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: strace-logs-${{ github.job }}-${{ matrix.flavor || 'lint' }}-${{ github.run_id }}-${{ github.run_attempt }}-${{ strategy.job-index || 0 }}
+        path: /home/runner/strace_logs/
